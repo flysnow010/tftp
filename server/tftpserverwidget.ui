@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TFtpServerWidget</class>
+ <widget class="QWidget" name="TFtpServerWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>737</width>
+    <height>349</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>TFtpServer is running</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1,0">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Current Dir</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="currentDir"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnBrowse">
+       <property name="text">
+        <string>Browse...</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QTreeWidget" name="clientTables">
+     <property name="rootIsDecorated">
+      <bool>false</bool>
+     </property>
+     <column>
+      <property name="text">
+       <string>peer</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>file</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>starttime</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>progress</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>bytes</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>total</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>timeout</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
