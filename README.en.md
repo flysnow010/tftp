@@ -48,6 +48,9 @@ TFTP software includes Client and Server. Users download files through GetFile a
      |User|          |TFTPClient|                  |TFTPServer|
      `----'          `----------'                  `----------'
 ```
+3. Class diagram
+   
+   ![](https://gitee.com/flysnow_1/tftp/raw/master/doc/out/class/TftpClass.svg)
 #### TFTP Protocol
 1. TFTP protocol is a simple file transfer protocol based on UDP. The two sides of the protocol are Client and Server. Files are transferred between Client and Server through five types of messages. The first two bytes of the message are the message type, and the message content varies depending on the message type. There are three transmission modes: octet, netascii, and mail. octet is in binary mode, netascii is in text mode, and mail is in text mode. However, the received text is not saved to a file, but printed to the screen, which is no longer commonly used. The data length of a DATA message is 128 or 512 bytes, and the last packet may be less than 128 or 512 bytes.
   
