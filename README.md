@@ -45,6 +45,8 @@ TFTP软件包括Client和Server，用户通过GetFile来下载文件，通过Put
      |User|          |TFTPClient|                  |TFTPServer|
      `----'          `----------'                  `----------'
 ```
+3. 类图
+   ![](https://gitee.com/flysnow_1/tftp/raw/master/doc/out/class/TftpClass.svg)
 #### TFTP协议
 1. TFTP协议是基于UDP的简单文件传输协议，协议双方为Client和Server.Client和Server之间通过5种消息来传输文件,消息前两个字节Code是消息类型，消息内容随消息类型不同而不同。传输模式有三种：octet,netascii和mail，octet为二进制模式，netascii为文本模式，mail为文本模式，不过收到的文本不是保存到文件，而是打印出来，现在已不常用。DATA消息种数据长度是是128或512字节，最后一个数据包可能会小于128或512。
   
@@ -57,7 +59,7 @@ Code        Type   Desc
 0x00 0x04   ACK    Ack   message
 0x00 0x05   ERROR  Error message
 ```
-3.  消息格式
+1.  消息格式
 * 3.1 RRQ消息
 ```
 Code      FileName      NULL   MODE      NULL
@@ -87,7 +89,7 @@ Code      BlockNumber
 Code      ErrorCode   ErrorMsg        NULL
 0x00 0x05 0x00 0x01   File Not Found  0x00
 ```
-4. 错误类型
+1. 错误类型
 ```
 ErrorCode   ErrorMsg
 0x00 0x01   File Not Found
