@@ -40,8 +40,14 @@ void TFtpServerFile::on_write_req(std::string const& filename, Mode mode)//write
         return;
     }
 
-    type_ = Write;
     filename_ = full_fileaname(filename);
+    if(get_filesize(filename_.c_str()) > 0)
+    {
+        error(FileExists, "File Exists in WRQ");
+        return;
+    }
+
+    type_ = Write;
 
     if(mode == TFtp::BINARY)
         write_file.open(filename_.c_str(),
