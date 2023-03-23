@@ -83,11 +83,14 @@ void TFtpClientWidget::onError(QString const& error)
 void TFtpClientWidget::onSelectLocalFile()
 {
     static QString filePath;
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Select File"),
-                               filePath,
-                               tr("All files (*.*)"));
-    if(fileName.isEmpty())
+    QFileDialog dialog(this, tr("Select File"), filePath, tr("All files (*.*)"));
+    if(dialog.exec() == QDialog::Rejected)
         return;
+    QStringList fileNames = dialog.selectedFiles();
+    if(fileNames.isEmpty())
+        return;
+
+    QString fileName = fileNames.first();
     filePath = QFileInfo(fileName).filePath();
     ui->lineEditLocalFile->setText(fileName);
 }
