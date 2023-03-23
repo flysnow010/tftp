@@ -1,0 +1,82 @@
+@startuml TFtpClasses
+
+abstract class BaseUdp {
+   {abstract} + write()
+}
+
+class ServerSocket {
+   {abstract} + write()
+}
+
+class ClientSocket {
+   {abstract} + write()
+}
+
+abstract class TFtp {
+    + process()
+
+    {abstract} # on_read_req()
+    {abstract} # on_write_req()
+    {abstract} # on_data()
+    {abstract} # on_ack()
+    {abstract} # on_error()
+    {abstract} # write()
+    # read_reg()
+    # write_req()
+    # send()
+    # resend()
+    # ack()
+    # error()
+}
+
+class TFtpClientFile {
+    - BaseUdp *udp
+
+    + getFile()
+    + putFile()
+    {abstract} # on_data()
+    {abstract} # on_ack()
+    {abstract} # on_error()
+    {abstract} # write()
+}
+
+class TFtpServerFile {
+    - BaseUdp *udp
+    {abstract} # on_read_req()
+    {abstract} # on_write_req()
+    {abstract} # on_data()
+    {abstract} # on_ack()
+    {abstract} # on_error()
+    {abstract} # write()
+}
+
+class TFtpServer {
+    - QUDPSocket *socket
+    - TFtpServerFile files[]
+    + setFilePath()
+    + start()
+    + stop()
+}
+
+class TFtpClient {
+    - QUDPSocket *socket
+    - TFtpClientFile file
+    + setHostPort()
+    + getFile()
+    + putFile()
+}
+
+BaseUdp <|-- ServerSocket
+BaseUdp <|-- ClientSocket
+
+TFtp <|-- TFtpServerFile
+TFtp <|-- TFtpClientFile
+
+TFtpServerFile *-- ServerSocket : have 1 >
+TFtpClientFile *-- ClientSocket : have 1 >
+
+TFtpServer *-- TFtpServerFile : have n >
+TFtpClient *-- TFtpClientFile : have 1 >
+
+center footer TFtp class diagram
+@enduml
