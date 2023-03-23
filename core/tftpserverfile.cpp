@@ -73,11 +73,14 @@ void TFtpServerFile::on_data(uint16_t block_number, uint8_t const* data, uint32_
         ack(block_number_);
     else
     {
+        if(block_size_ == 0)
+            block_size_ = size;
+
         write_file.write((char *)data, size);
         file_bytes_ += size;
         ack(block_number);
         block_number_ = block_number;
-        if(size < BLOCK_SIZE)
+        if(size < block_size_)
         {
             filesize_ = file_bytes_;
             write_file.close();

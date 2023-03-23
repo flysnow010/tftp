@@ -48,10 +48,12 @@ void TFtpClientFile::on_data(uint16_t block_number, uint8_t const* data, uint32_
         error(IllegalOperation, "Illegal TFTP Operation in Data");
         return;
     }
+    if(block_size_ == 0)
+        block_size_ = size;
     write_file.write((char *)data, size);
     file_bytes_ += size;
     ack(block_number);
-    if(size < BLOCK_SIZE)
+    if(size < block_size_)
     {
         filesize_ = file_bytes_;
         finished();
