@@ -29,5 +29,7 @@ private:
 private:
     Ui::TFtpServerWidget *ui;
     TFtpServer* tftpServer;
+    int MAX_PATH_SIZE = 5;
+
 };
 #endif // TFTPSERVERWIDGET_H

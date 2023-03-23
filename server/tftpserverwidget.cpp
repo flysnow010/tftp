@@ -35,11 +35,15 @@ void TFtpServerWidget::selectTFtpDir()
 {
     QString filePath = QFileDialog::getExistingDirectory(this,
                         "Select Dir", ui->currentDir->currentText());
+    if(filePath.isEmpty())
+        return;
     int index  = ui->currentDir->findText(filePath);
     if(index != -1)
         ui->currentDir->setCurrentIndex(index);
     else
     {
+        if(ui->currentDir->count() >= MAX_PATH_SIZE)
+            ui->currentDir->removeItem(0);
         ui->currentDir->addItem(filePath);
         ui->currentDir->setCurrentIndex(ui->currentDir->count()  - 1);
     }
