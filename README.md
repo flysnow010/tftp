@@ -60,7 +60,7 @@ Code        Type   Desc
 0x00 0x04   ACK    Ack   message
 0x00 0x05   ERROR  Error message
 ```
-1.  消息格式
+3.  消息格式
 * 3.1 RRQ消息
 ```
 Code      FileName      NULL   MODE      NULL
@@ -90,7 +90,7 @@ Code      BlockNumber
 Code      ErrorCode   ErrorMsg        NULL
 0x00 0x05 0x00 0x01   File Not Found  0x00
 ```
-1. 错误类型
+4. 错误类型
 ```
 ErrorCode   ErrorMsg
 0x00 0x01   File Not Found
